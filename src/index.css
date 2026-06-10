@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+	height: 100%;
+	background: #000000;
+	color: #ffffff;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	overflow: hidden;
+}
+
+input, textarea, button { outline: none; }
+
+.app-wrap {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background: #000000;
+}
+
+/* --- FLOATING DOT --- */
+.floating-dot {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0,0,0,0.25);
+	font-size: 32px;
+	font-weight: 700;
+	color: #fff;
+	border-radius: 50%;
+	-webkit-app-region: no-drag;
+	gap: 4px;
+}
+.dot-letter {
+	cursor: pointer;
+	text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+.dot-arrow {
+	background: none; border: none;
+	color: #fff; font-size: 12px;
+	cursor: pointer; padding: 4px;
+	opacity: 0.6;
+	text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+}
+.dot-arrow:hover { opacity: 1; }
+
+/* --- TITLE BAR (only brand text is draggable) --- */
+.titlebar {
+	height: 42px;
+	background: #000000;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 8px 0 0;
+	border-bottom: 1px solid #222;
+}
+.titlebar-brand {
+	font-size: 16px;
+	font-weight: 700;
+	color: #fff;
+	letter-spacing: 1px;
+	padding: 0 14px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	flex: 1;
+	user-select: none;
+}
+.titlebar-btns { display: flex; gap: 4px; -webkit-app-region: no-drag; }
+.titlebar-btn {
+	width: 32px; height: 28px;
+	border: none; background: transparent;
+	cursor: pointer; display: flex;
+	align-items: center; justify-content: center;
+	font-size: 14px; color: #999;
+}
+.titlebar-btn:hover { background: #333; }
+.titlebar-btn.close:hover { background: #e81123; color: white; }
+
+/* --- KEY PROMPT --- */
+.key-prompt {
+	display: flex; flex-direction: column;
+	align-items: center; justify-content: center;
+	gap: 20px; height: calc(100% - 42px);
+	padding: 40px; background: #000000;
+	-webkit-app-region: no-drag;
+}
+.key-prompt h1 {
+	font-size: 32px; background: #fff; color: #000;
+	padding: 10px 24px; font-weight: 700;
+	letter-spacing: 1px; text-align: center;
+	box-shadow: 4px 4px 0 rgba(255,255,255,0.15);
+}
+.key-prompt p { color: #888; font-size: 13px; text-align: center; }
+.key-prompt input {
+	width: 100%; max-width: 400px;
+	padding: 12px 16px; border: 2px solid #fff;
+	font-size: 14px; background: #111; color: #fff;
+}
+.key-prompt input:focus { border-color: #fff; box-shadow: 4px 4px 0 rgba(255,255,255,0.1); }
+.key-prompt button {
+	padding: 12px 32px; background: #fff; color: #000;
+	border: none; font-size: 14px; font-weight: 600;
+	cursor: pointer; letter-spacing: 1px;
+}
+.key-prompt button:hover:not(:disabled) { opacity: 0.85; }
+.key-prompt button:disabled { opacity: 0.4; cursor: not-allowed; }
+.error-msg { color: #ff5252; font-size: 12px; }
+
+/* --- CHAT (selectable text) --- */
+.chat-body {
+	flex: 1; overflow-y: auto; padding: 16px;
+	background: #000000; display: flex; flex-direction: column; gap: 12px;
+	-webkit-app-region: no-drag;
+	user-select: text;
+}
+.empty-brand {
+	display: flex; align-items: center; justify-content: center;
+	height: 100%; font-size: 36px;
+	color: #fff;
+	user-select: none;
+}
+.sent-msg, .recv-msg {
+	padding: 10px 14px; max-width: 85%;
+	word-wrap: break-word; white-space: pre-wrap;
+	line-height: 1.5; font-size: 14px;
+	user-select: text;
+}
+.sent-msg { align-self: flex-end; background: #1a1a1a; color: #fff; border: 1px solid #333; }
+.recv-msg { align-self: flex-start; background: #111; color: #ddd; border: 1px solid #333; }
+
+/* --- INPUT BAR --- */
+.input-bar {
+	display: flex; border-top: 2px solid #222;
+	background: #000; padding: 8px; gap: 8px; align-items: center;
+	-webkit-app-region: no-drag;
+}
+.input-bar textarea {
+	flex: 1; border: none; padding: 10px 14px;
+	font-size: 14px; resize: none;
+	background: #000; color: #fff;
+	font-family: inherit; line-height: 1.4;
+	min-height: 20px; max-height: 120px;
+}
+.input-bar textarea::placeholder { color: #888; }
+.input-bar button {
+	width: 36px; height: 36px; border: none;
+	background: transparent; color: #fff;
+	cursor: pointer; display: flex;
+	align-items: center; justify-content: center;
+	font-size: 18px;
+}
+.input-bar button:hover { background: rgba(255,255,255,0.1); }
+.input-bar button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* --- SETTINGS --- */
+.settings-btn {
+	position: fixed; bottom: 68px; right: 12px;
+	width: 36px; height: 36px;
+	background: transparent; border: none;
+	cursor: pointer; color: #666;
+	font-size: 18px; display: flex;
+	align-items: center; justify-content: center;
+	z-index: 10; -webkit-app-region: no-drag;
+}
+.settings-btn:hover { background: #222; color: #fff; }
+.settings-panel {
+	position: fixed; bottom: 112px; right: 12px;
+	background: #111; border: 1px solid #333;
+	padding: 14px; z-index: 11; min-width: 220px;
+	box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+	-webkit-app-region: no-drag;
+}
+.settings-panel label {
+	display: flex; align-items: center;
+	gap: 8px; font-size: 13px; color: #ccc; cursor: pointer;
+	margin-bottom: 8px;
+}
+.settings-panel input[type="range"] { width: 100%; accent-color: #fff; margin: 8px 0; }
+.settings-panel .row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.settings-panel .row span { font-size: 12px; color: #999; min-width: 30px; }
+.settings-panel .sec-btn {
+	background: none; border: 1px solid #555; color: #ccc;
+	padding: 4px 12px; cursor: pointer; font-size: 12px;
+}
+.settings-panel .sec-btn:hover { background: #222; }

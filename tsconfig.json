@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"jsx": "react-jsx",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"outDir": "./dist",
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"types": ["node"],
+		"declaration": false
+	},
+	"include": ["src"],
+	"files": [],
+	"references": [{ "path": "./tsconfig.node.json" }]
+}
